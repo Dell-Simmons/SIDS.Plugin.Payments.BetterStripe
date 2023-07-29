@@ -1,0 +1,1 @@
+# SIDS.Plugin.Payments.BetterStripe
