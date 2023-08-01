@@ -1,11 +1,12 @@
 ﻿{
-  "Group": "",
-  "FriendlyName": "",
-  "SystemName": "",
-  "Version": "1.00",
+  "Group": "Nop-Station",
+  "FriendlyName": "Stripe",
+  "SystemName": "NopStation.Plugin.Payments.Stripe",
+  "Version": "4.60.1.0",
   "SupportedVersions": [ "4.60" ],
-  "Author": "Author Name",
+  "Author": "Nop-Station Team",
   "DisplayOrder": 1,
-  "FileName": "SIDS.Plugin.Payments.BetterStripe.dll",
-  "Description": ""
+  "FileName": "NopStation.Plugin.Payments.Stripe.dll",
+  "Description": "This plugin enables stripe gateway payments.",
+  "DependsOnSystemNames": [ "NopStation.Core" ]
 }
