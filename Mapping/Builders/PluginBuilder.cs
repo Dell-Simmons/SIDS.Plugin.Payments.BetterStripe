@@ -1,8 +1,8 @@
 ﻿using FluentMigrator.Builders.Create.Table;
 using Nop.Data.Mapping.Builders;
-using SIDS.Plugin.Payments.BetterStripe.Domains;
+using SIDS.Plugin.Misc.SEOCleaner.Domains;
 
-namespace SIDS.Plugin.Payments.BetterStripe.Mapping.Builders
+namespace SIDS.Plugin.Misc.SEOCleaner.Mapping.Builders
 {
     public class PluginBuilder : NopEntityBuilder<CustomTable>
     {

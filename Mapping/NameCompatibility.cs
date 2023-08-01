@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Nop.Data.Mapping;
 
-namespace SIDS.Plugin.Payments.BetterStripe.Mapping
+namespace SIDS.Plugin.Misc.SEOCleaner.Mapping
 {
     public partial class NameCompatibility : INameCompatibility
     {

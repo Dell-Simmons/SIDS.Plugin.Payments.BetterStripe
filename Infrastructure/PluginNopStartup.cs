@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 
-namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
+namespace SIDS.Plugin.Misc.SEOCleaner.Infrastructure
 {
     public class PluginNopStartup : INopStartup
     {

@@ -1,1 +1,1 @@
-# SIDS.Plugin.Payments.BetterStripe
+# SIDS.Plugin.Misc.SEOCleaner

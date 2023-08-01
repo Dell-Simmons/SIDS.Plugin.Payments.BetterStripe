@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-	  <OutputPath>..\..\Presentation\Nop.Web\Plugins\SIDS.Plugin.Payments.BetterStripe</OutputPath>
+	  <OutputPath>..\..\Presentation\Nop.Web\Plugins\SIDS.Plugin.Payment.BetterStripe</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
     <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project.
     You need to set this parameter to true if your plugin has a nuget package 
@@ -51,10 +51,6 @@
     <Folder Include="Factories\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Stripe.net" Version="41.26.0" />
   </ItemGroup>
  
   <!-- This target execute after "Build" target -->

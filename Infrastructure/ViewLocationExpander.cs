@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
+namespace SIDS.Plugin.Misc.SEOCleaner.Infrastructure
 {
     public class ViewLocationExpander : IViewLocationExpander
     {
@@ -14,11 +14,11 @@ namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
         {
             if (context.AreaName == "Admin")
             {
-                viewLocations = new[] { $"/Plugins/SIDS.Plugin.Payments.BetterStripe/Areas/Admin/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
+                viewLocations = new[] { $"/Plugins/SIDS.Plugin.Misc.SEOCleaner/Areas/Admin/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
             }
             else
             {
-                viewLocations = new[] { $"/Plugins/SIDS.Plugin.Payments.BetterStripe/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
+                viewLocations = new[] { $"/Plugins/SIDS.Plugin.Misc.SEOCleaner/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
             }
 
             return viewLocations;
