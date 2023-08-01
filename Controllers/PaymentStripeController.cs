@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace SIDS.Plugin.Payments.BetterStripe.Controllers
 {
-	public class PaymentStripeController : NopStationAdminController
+	public class PaymentStripeController : BasePaymentController
 	{
 		private readonly IWorkContext _workContext;
 
