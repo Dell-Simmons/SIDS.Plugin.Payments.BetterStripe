@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace SIDS.Plugin.Misc.SEOCleaner.Infrastructure
+namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
 {
     public class ViewLocationExpander : IViewLocationExpander
     {

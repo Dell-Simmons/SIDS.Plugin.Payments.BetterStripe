@@ -1,11 +1,11 @@
 ﻿{
-  "Group": "",
-  "FriendlyName": "",
-  "SystemName": "",
+  "Group": "Payment methods",
+  "FriendlyName": "Stripe",
+  "SystemName": "Payments.BetterStripe",
   "Version": "1.00",
   "SupportedVersions": [ "4.60" ],
-  "Author": "Author Name",
+  "Author": "Dell",
   "DisplayOrder": 1,
-  "FileName": "SIDS.Plugin.Misc.SEOCleaner.dll",
-  "Description": ""
+  "FileName": "SIDS.Plugin.Payments.BetterStripe.dll",
+  "Description": "Home grown Stripe payment plugin so can write our own checkout plugin"
 }

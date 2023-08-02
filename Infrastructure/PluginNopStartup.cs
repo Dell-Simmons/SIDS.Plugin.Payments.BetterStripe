@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 
-namespace SIDS.Plugin.Misc.SEOCleaner.Infrastructure
+namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
 {
     public class PluginNopStartup : INopStartup
     {
@@ -12,7 +12,7 @@ namespace SIDS.Plugin.Misc.SEOCleaner.Infrastructure
         {
             services.Configure<RazorViewEngineOptions>(options =>
             {
-                options.ViewLocationExpanders.Add(new ViewLocationExpander());
+                options.ViewLocationExpanders.Add(new SIDS.Plugin.Payments..BetterStripe.Infrastructure.ViewLocationExpander());
             });
 
             //register services and interfaces

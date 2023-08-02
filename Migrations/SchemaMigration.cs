@@ -1,7 +1,7 @@
 ﻿using FluentMigrator;
 using Nop.Data.Migrations;
 
-namespace SIDS.Plugin.Misc.SEOCleaner.Migrations
+namespace SIDS.Plugin.Payments.BetterStripe.Migrations
 {
     [NopMigration("", "SIDS.Plugin.Misc.SEOCleaner schema", MigrationProcessType.Installation)]
     public class SchemaMigration : AutoReversingMigration

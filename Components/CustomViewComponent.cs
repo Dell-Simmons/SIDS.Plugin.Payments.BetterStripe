@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Nop.Web.Framework.Components;
 
-namespace SIDS.Plugin.Misc.SEOCleaner.Components
+namespace SIDS.Plugin.Payments.BetterStripe.Components
 {
     [ViewComponent(Name = "Custom")]
     public class CustomViewComponent : NopViewComponent
