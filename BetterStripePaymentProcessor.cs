@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nop.Core.Domain.Orders;
-using Nop.Services.Cms;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
-using Nop.Web.Framework.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SIDS.Plugin.Payments.BetterStripe
 {
@@ -15,88 +14,76 @@ namespace SIDS.Plugin.Payments.BetterStripe
     /// </summary>
     public class BetterStripePaymentProcessor : BasePlugin, IPaymentMethod
     {
-        public bool SupportCapture => throw new NotImplementedException();
+        #region Properties
+        public PaymentMethodType PaymentMethodType => PaymentMethodType.Standard;
 
-        public bool SupportPartiallyRefund => throw new NotImplementedException();
+        public RecurringPaymentType RecurringPaymentType => RecurringPaymentType.NotSupported;
 
-        public bool SupportRefund => throw new NotImplementedException();
+        public bool SkipPaymentInfo => false;
 
-        public bool SupportVoid => throw new NotImplementedException();
+        public bool SupportCapture => false;
 
-        public RecurringPaymentType RecurringPaymentType => throw new NotImplementedException();
+        public bool SupportPartiallyRefund => false;
 
-        public PaymentMethodType PaymentMethodType => throw new NotImplementedException();
+        public bool SupportRefund => false;
 
-        public bool SkipPaymentInfo => throw new NotImplementedException();
+        public bool SupportVoid => false;
+        #endregion
 
-        public Task<CancelRecurringPaymentResult> CancelRecurringPaymentAsync(CancelRecurringPaymentRequest cancelPaymentRequest)
+        #region Methods
+        public Task<CancelRecurringPaymentResult> CancelRecurringPaymentAsync(
+            CancelRecurringPaymentRequest cancelPaymentRequest)
         {
-            throw new NotImplementedException();
+            var result = new CancelRecurringPaymentResult();
+            result.AddError("Recurring payment not supported");
+
+            return Task.FromResult(result);
         }
 
-        public Task<bool> CanRePostProcessPaymentAsync(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> CanRePostProcessPaymentAsync(Order order) { return Task.FromResult(false); }
 
         public Task<CapturePaymentResult> CaptureAsync(CapturePaymentRequest capturePaymentRequest)
         {
-            throw new NotImplementedException();
+            var result = new CapturePaymentResult();
+            result.AddError("Capture method not supported");
+
+            return Task.FromResult(result);
         }
 
         public Task<decimal> GetAdditionalHandlingFeeAsync(IList<ShoppingCartItem> cart)
         {
-            throw new NotImplementedException();
+            var result = await _orderTotalCalculationService.CalculatePaymentAdditionalFeeAsync(cart,
+       _braintreePaymentSettings.AdditionalFee, _braintreePaymentSettings.AdditionalFeePercentage);
+
+            return result;
         }
 
         public Task<ProcessPaymentRequest> GetPaymentInfoAsync(IFormCollection form)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
 
-        public Task<string> GetPaymentMethodDescriptionAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<string> GetPaymentMethodDescriptionAsync() { throw new NotImplementedException(); }
 
-        public Type GetPublicViewComponent()
-        {
-            throw new NotImplementedException();
-        }
+        public Type GetPublicViewComponent() { throw new NotImplementedException(); }
 
-        public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart) { throw new NotImplementedException(); }
 
         public Task PostProcessPaymentAsync(PostProcessPaymentRequest postProcessPaymentRequest)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
 
         public Task<ProcessPaymentResult> ProcessPaymentAsync(ProcessPaymentRequest processPaymentRequest)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
 
         public Task<ProcessPaymentResult> ProcessRecurringPaymentAsync(ProcessPaymentRequest processPaymentRequest)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
 
         public Task<RefundPaymentResult> RefundAsync(RefundPaymentRequest refundPaymentRequest)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
 
         public Task<IList<string>> ValidatePaymentFormAsync(IFormCollection form)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
 
         public Task<VoidPaymentResult> VoidAsync(VoidPaymentRequest voidPaymentRequest)
-        {
-            throw new NotImplementedException();
-        }
+        { throw new NotImplementedException(); }
+        #endregion
     }
 }
