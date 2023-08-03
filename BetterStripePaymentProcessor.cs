@@ -1,6 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Nop.Core;
 using Nop.Core.Domain.Orders;
+using Nop.Services.Common;
+using Nop.Services.Configuration;
+using Nop.Services.Customers;
+using Nop.Services.Directory;
+using Nop.Services.Localization;
+using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
 using System;
@@ -14,6 +21,39 @@ namespace SIDS.Plugin.Payments.BetterStripe
     /// </summary>
     public class BetterStripePaymentProcessor : BasePlugin, IPaymentMethod
     {
+        private readonly BetterStripePaymentSettings _betterStripePaymentSettings;
+        private readonly IAddressService _addressService;
+        private readonly ICountryService _countryService;
+        private readonly ICurrencyService _currencyService;
+        private readonly ICustomerService _customerService;
+        private readonly ILocalizationService _localizationService;
+        private readonly IOrderTotalCalculationService _orderTotalCalculationService;
+        private readonly ISettingService _settingService;
+        private readonly IWebHelper _webHelper;
+        private readonly IWorkContext _workContext;
+
+        public BetterStripePaymentProcessor(BetterStripePaymentSettings betterStripePaymentSettings, 
+                                            IAddressService addressService,
+                                            ICountryService countryService,
+                                            ICurrencyService currencyService,
+                                            ICustomerService customerService,
+                                            ILocalizationService localizationService,
+                                            IOrderTotalCalculationService orderTotalCalculationService,
+                                            ISettingService settingService,
+                                            IWebHelper webHelper,
+                                            IWorkContext workContext)
+        {
+            _betterStripePaymentSettings = betterStripePaymentSettings;
+            _addressService = addressService;
+            _countryService = countryService;
+            _currencyService = currencyService;
+            _customerService = customerService;
+            _localizationService = localizationService;
+            _orderTotalCalculationService = orderTotalCalculationService;
+            _settingService = settingService;
+            _webHelper = webHelper;
+            _workContext = workContext;
+        }
         #region Properties
         public PaymentMethodType PaymentMethodType => PaymentMethodType.Standard;
 
@@ -52,10 +92,8 @@ namespace SIDS.Plugin.Payments.BetterStripe
 
         public Task<decimal> GetAdditionalHandlingFeeAsync(IList<ShoppingCartItem> cart)
         {
-            var result = await _orderTotalCalculationService.CalculatePaymentAdditionalFeeAsync(cart,
-       _braintreePaymentSettings.AdditionalFee, _braintreePaymentSettings.AdditionalFeePercentage);
-
-            return result;
+            var result = 0m;
+            return Task.FromResult(result);
         }
 
         public Task<ProcessPaymentRequest> GetPaymentInfoAsync(IFormCollection form)
