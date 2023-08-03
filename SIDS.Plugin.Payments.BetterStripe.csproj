@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-	  <OutputPath>..\..\Presentation\Nop.Web\Plugins\SIDS.Plugin.Payment.BetterStripe</OutputPath>
+	  <OutputPath>..\..\Presentation\Nop.Web\Plugins\Payment.BetterStripe</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
     <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project.
     You need to set this parameter to true if your plugin has a nuget package 
@@ -11,8 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\SchemaMigration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="logo.jpg" />
 	<None Remove="plugin.json" />
+	<None Remove="Views\Configure.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
   </ItemGroup>
@@ -24,11 +29,13 @@
     <Content Include="plugin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Configure.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj" />
-    <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj" />
     <ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
   </ItemGroup>
 
@@ -48,6 +55,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Extensions\" />
     <Folder Include="Factories\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Services\" />
   </ItemGroup>
  

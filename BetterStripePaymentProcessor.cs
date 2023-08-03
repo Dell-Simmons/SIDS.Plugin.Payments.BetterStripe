@@ -122,6 +122,14 @@ namespace SIDS.Plugin.Payments.BetterStripe
 
         public Task<VoidPaymentResult> VoidAsync(VoidPaymentRequest voidPaymentRequest)
         { throw new NotImplementedException(); }
+
+        /// <summary>
+        /// Gets a configuration page URL
+        /// </summary>
+        public override string GetConfigurationPageUrl()
+        {
+            return $"{_webHelper.GetStoreLocation()}Admin/BetterStripe/Configure";
+        }
         /// <summary>
         /// Install plugin
         /// </summary>
