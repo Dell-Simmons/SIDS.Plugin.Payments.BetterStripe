@@ -122,6 +122,53 @@ namespace SIDS.Plugin.Payments.BetterStripe
 
         public Task<VoidPaymentResult> VoidAsync(VoidPaymentRequest voidPaymentRequest)
         { throw new NotImplementedException(); }
+        /// <summary>
+        /// Install plugin
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public override async Task InstallAsync()
+        {
+            //settings
+            await _settingService.SaveSettingAsync(new BetterStripePaymentSettings
+            {
+                UseSandbox = true
+            });
+
+            //locales
+            await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
+            {
+               ["Plugins.Payments.BetterStripe.Errors.3DSecureFailed"] = "The 3D Secure authentication is failed",
+                ["Plugins.Payments.BetterStripe.Errors.ErrorProcessingPayment"] = "Error processing payment.",
+                 ["Plugins.Payments.BetterStripe.Fields.PrivateKey.Hint"] = "Enter Secret key",
+                ["Plugins.Payments.BetterStripe.Fields.SecretKey.Required"] = "Secret key is required",
+                ["Plugins.Payments.BetterStripe.Fields.SecretKey"] = "Secret Key",
+                ["Plugins.Payments.BetterStripe.Fields.PublicKey.Hint"] = "Enter Public key",
+                ["Plugins.Payments.BetterStripe.Fields.PublicKey.Required"] = "Public key is required",
+                ["Plugins.Payments.BetterStripe.Fields.PublicKey"] = "Public Key",
+                ["Plugins.Payments.BetterStripe.Fields.Use3DS"] = "Use the 3D secure",
+                ["Plugins.Payments.BetterStripe.Fields.Use3DS.Hint"] = "Check to enable the 3D secure integration",
+                ["Plugins.Payments.BetterStripe.Fields.UseSandbox.Hint"] = "Check to enable Sandbox (testing environment).",
+                ["Plugins.Payments.BetterStripe.Fields.UseSandbox"] = "Use Sandbox",
+                ["Plugins.Payments.BetterStripe.PaymentMethodDescription"] = "Pay by credit / debit card"
+            });
+
+            await base.InstallAsync();
+        }
+
+        /// <summary>
+        /// Uninstall plugin
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public override async Task UninstallAsync()
+        {
+            //settings
+            await _settingService.DeleteSettingAsync<BetterStripePaymentSettings>();
+
+            //locales
+            await _localizationService.DeleteLocaleResourcesAsync("Plugins.Payments.BetterStripe");
+
+            await base.UninstallAsync();
+        }
         #endregion
     }
 }

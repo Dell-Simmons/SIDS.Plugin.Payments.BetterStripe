@@ -12,7 +12,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
         {
             services.Configure<RazorViewEngineOptions>(options =>
             {
-                options.ViewLocationExpanders.Add(new SIDS.Plugin.Payments..BetterStripe.Infrastructure.ViewLocationExpander());
+                options.ViewLocationExpanders.Add(new SIDS.Plugin.Payments.BetterStripe.Infrastructure.ViewLocationExpander());
             });
 
             //register services and interfaces
