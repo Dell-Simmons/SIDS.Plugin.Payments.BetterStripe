@@ -77,30 +77,18 @@ namespace SIDS.Plugin.Payments.BetterStripe.Controllers
 
             //load settings for a chosen store scope
             var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
-            var betterStripePaymentSettings = await _settingService.LoadSettingAsync<BraintreePaymentSettings>(storeScope);
+            var betterStripePaymentSettings = await _settingService.LoadSettingAsync<BetterStripePaymentSettings>(storeScope);
 
             //save settings
             betterStripePaymentSettings.UseSandbox = model.UseSandbox;
             betterStripePaymentSettings.PublicKey = model.PublicKey;
-            betterStripePaymentSettings.PrivateKey = model.PrivateKey;
-            betterStripePaymentSettings.MerchantId = model.MerchantId;
-            betterStripePaymentSettings.AdditionalFee = model.AdditionalFee;
-            betterStripePaymentSettings.AdditionalFeePercentage = model.AdditionalFeePercentage;
-            betterStripePaymentSettings.UseMultiCurrency = model.UseMultiCurrency;
+            betterStripePaymentSettings.SecretKey = model.SecretKey;
             betterStripePaymentSettings.Use3DS = model.Use3DS;
 
             /* We do not clear cache after each setting update.
              * This behavior can increase performance because cached settings will not be cleared 
              * and loaded from database after each update */
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.UseSandbox, model.UseSandbox_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.PublicKey, model.PublicKey_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.PrivateKey, model.PrivateKey_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.MerchantId, model.MerchantId_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.AdditionalFee, model.AdditionalFee_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.AdditionalFeePercentage, model.AdditionalFeePercentage_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.UseMultiCurrency, model.UseMultiCurrency_OverrideForStore, storeScope, false);
-            await _settingService.SaveSettingOverridablePerStoreAsync(betterStripePaymentSettings, settings => settings.Use3DS, model.Use3DS_OverrideForStore, storeScope, false);
-
+         
             //now clear settings cache
             await _settingService.ClearCacheAsync();
 
