@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Infrastructure\ViewLocationExpander.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="logo.jpg" />
 	<None Remove="plugin.json" />
 	<None Remove="Views\Configure.cshtml" />
