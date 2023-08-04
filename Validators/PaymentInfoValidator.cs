@@ -12,9 +12,9 @@ namespace SIDS.Plugin.Payments.BetterStripe.Validators
     {
         #region Ctor
 
-        public PaymentInfoValidator(BetterStripePaymentSettings braintreePaymentSettings, ILocalizationService localizationService)
+        public PaymentInfoValidator(BetterStripePaymentSettings betterStripePaymentSettings, ILocalizationService localizationService)
         {
-            if (braintreePaymentSettings.Use3DS)
+            if (betterStripePaymentSettings.Use3DS)
                 return;
 
             RuleFor(model => model.CardHolderName)

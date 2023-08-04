@@ -10,10 +10,10 @@ namespace SIDS.Plugin.Payments.BetterStripe.Infrastructure
     {
         public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                options.ViewLocationExpanders.Add(new SIDS.Plugin.Payments.BetterStripe.Infrastructure.ViewLocationExpander());
-            });
+            //services.Configure<RazorViewEngineOptions>(options =>
+            //{
+            //    options.ViewLocationExpanders.Add(new SIDS.Plugin.Payments.BetterStripe.Infrastructure.ViewLocationExpander());
+            //});
 
             //register services and interfaces
             //services.AddScoped<CustomModelFactory, ICustomerModelFactory>();

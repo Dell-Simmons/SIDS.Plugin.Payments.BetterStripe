@@ -126,6 +126,7 @@ namespace SIDS.Plugin.Payments.BetterStripe
         /// <summary>
         /// Gets a configuration page URL
         /// </summary>
+        //! HERE HERE HERE
         public override string GetConfigurationPageUrl()
         {
             return $"{_webHelper.GetStoreLocation()}Admin/BetterStripe/Configure";

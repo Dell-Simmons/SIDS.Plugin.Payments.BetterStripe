@@ -22,7 +22,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Controllers
     [ValidateIpAddress]
     [AuthorizeAdmin]
     [ValidateVendor]
-    internal class BetterStripeController : BasePaymentController
+    public class BetterStripeController : BasePaymentController
     {
         private readonly ILocalizationService _localizationService;
         private readonly INotificationService _notificationService;
@@ -63,7 +63,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Controllers
 
           
 
-            return View("~/Plugins/Payments.BetterCheckout/Views/Configure.cshtml", model);
+            return View("~/Plugins/Payments.BetterStripe/Views/Configure.cshtml", model);
         }
 
         [HttpPost]
