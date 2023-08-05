@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Braintree;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
-using Nop.Plugin.Payments.Braintree.Models;
+using SIDS.Plugin.Payments.BetterStripe.Models;
 using Nop.Services.Messages;
 using Nop.Services.Orders;
 using Nop.Web.Framework.Components;
-using Environment = Braintree.Environment;
 
 namespace SIDS.Plugin.Payments.BetterStripe.Components
 {
@@ -21,7 +19,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
     {
         #region Fields
 
-        private readonly BraintreePaymentSettings _braintreePaymentSettings;
+        private readonly BetterStripePaymentSettings _betterStripePaymentSettings;
         private readonly INotificationService _notificationService;
         private readonly IOrderTotalCalculationService _orderTotalCalculationService;
         private readonly IShoppingCartService _shoppingCartService;
@@ -33,7 +31,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
 
         #region Ctor
 
-        public PaymentInfoViewComponent(BraintreePaymentSettings braintreePaymentSettings,
+        public PaymentInfoViewComponent(BetterStripePaymentSettings betterStripePaymentSettings,
             INotificationService notificationService,
             IOrderTotalCalculationService orderTotalCalculationService,
             IShoppingCartService shoppingCartService,
@@ -41,7 +39,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
             IWorkContext workContext,
             OrderSettings orderSettings)
         {
-            _braintreePaymentSettings = braintreePaymentSettings;
+            _betterStripePaymentSettings = betterStripePaymentSettings;
             _notificationService = notificationService;
             _orderTotalCalculationService = orderTotalCalculationService;
             _shoppingCartService = shoppingCartService;
@@ -67,51 +65,21 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
         {
             var model = new PaymentInfoModel();
 
-            if (_braintreePaymentSettings.Use3DS)
-            {
-                try
-                {
-                    var gateway = new BraintreeGateway
-                    {
-                        Environment = _braintreePaymentSettings.UseSandbox ? Environment.SANDBOX : Environment.PRODUCTION,
-                        MerchantId = _braintreePaymentSettings.MerchantId,
-                        PublicKey = _braintreePaymentSettings.PublicKey,
-                        PrivateKey = _braintreePaymentSettings.PrivateKey
-                    };
-                    var clientToken = gateway.ClientToken.Generate();
+          
 
-                    var cart = await _shoppingCartService
-                        .GetShoppingCartAsync(await _workContext.GetCurrentCustomerAsync(), ShoppingCartType.ShoppingCart, (await _storeContext.GetCurrentStoreAsync()).Id);
-                    var (orderTotal, _, _, _, _, _) = await _orderTotalCalculationService.GetShoppingCartTotalAsync(cart);
+            //for (var i = 0; i < 15; i++)
+            //{
+            //    var year = Convert.ToString(DateTime.Now.Year + i);
+            //    model.ExpireYears.Add(new SelectListItem { Text = year, Value = year, });
+            //}
 
-                    model.ClientToken = clientToken;
-                    model.OrderTotal = orderTotal;
-                }
-                catch (Exception exception)
-                {
-                    model.Errors = exception.Message;
-                    if (_orderSettings.OnePageCheckoutEnabled)
-                        ModelState.AddModelError(string.Empty, exception.Message);
-                    else
-                        await _notificationService.ErrorNotificationAsync(exception);
-                }
+            //for (var i = 1; i <= 12; i++)
+            //{
+            //    var text = (i < 10) ? "0" + i : i.ToString();
+            //    model.ExpireMonths.Add(new SelectListItem { Text = text, Value = i.ToString(), });
+            //}
 
-                return View("~/Plugins/Payments.Braintree/Views/PaymentInfo.3DS.cshtml", model);
-            }
-
-            for (var i = 0; i < 15; i++)
-            {
-                var year = Convert.ToString(DateTime.Now.Year + i);
-                model.ExpireYears.Add(new SelectListItem { Text = year, Value = year, });
-            }
-
-            for (var i = 1; i <= 12; i++)
-            {
-                var text = (i < 10) ? "0" + i : i.ToString();
-                model.ExpireMonths.Add(new SelectListItem { Text = text, Value = i.ToString(), });
-            }
-
-            return View("~/Plugins/Payments.Braintree/Views/PaymentInfo.cshtml", model);
+            return View("~/Plugins/Payments.BetterStripe/Views/PaymentInfo.cshtml", model);
         }
 
         #endregion

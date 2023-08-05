@@ -104,7 +104,10 @@ namespace SIDS.Plugin.Payments.BetterStripe
             return await _localizationService.GetResourceAsync("Plugins.Payments.BetterStripe.PaymentMethodDescription"); 
         }
 
-        public Type GetPublicViewComponent() { throw new NotImplementedException(); }
+        public Type GetPublicViewComponent() 
+        {
+            return typeof(PaymentInfoViewComponent);
+        }
 
         public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart)
         { 
