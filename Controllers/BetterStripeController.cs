@@ -88,7 +88,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Controllers
             /* We do not clear cache after each setting update.
              * This behavior can increase performance because cached settings will not be cleared 
              * and loaded from database after each update */
-         
+            await _settingService.SaveSettingAsync(betterStripePaymentSettings);
             //now clear settings cache
             await _settingService.ClearCacheAsync();
 

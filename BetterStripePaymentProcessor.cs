@@ -99,11 +99,22 @@ namespace SIDS.Plugin.Payments.BetterStripe
         public Task<ProcessPaymentRequest> GetPaymentInfoAsync(IFormCollection form)
         { throw new NotImplementedException(); }
 
-        public Task<string> GetPaymentMethodDescriptionAsync() { throw new NotImplementedException(); }
+        public async Task<string> GetPaymentMethodDescriptionAsync() 
+        { 
+            return await _localizationService.GetResourceAsync("Plugins.Payments.BetterStripe.PaymentMethodDescription"); 
+        }
 
         public Type GetPublicViewComponent() { throw new NotImplementedException(); }
 
-        public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart) { throw new NotImplementedException(); }
+        public Task<bool> HidePaymentMethodAsync(IList<ShoppingCartItem> cart)
+        { 
+        
+            //you can put any logic here
+            //for example, hide this payment method if all products in the cart are downloadable
+            //or hide this payment method if current customer is from certain country
+
+            return Task.FromResult(false);
+        }
 
         public Task PostProcessPaymentAsync(PostProcessPaymentRequest postProcessPaymentRequest)
         { throw new NotImplementedException(); }
