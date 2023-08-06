@@ -14,7 +14,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
     /// <summary>
     /// Represents the view component to display payment info in public store
     /// </summary>
-    [ViewComponent(Name = "BraintreePaymentInfo")]
+    [ViewComponent(Name = "BetterStripePaymentInfo")]
     public class PaymentInfoViewComponent : NopViewComponent
     {
         #region Fields
@@ -65,7 +65,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
         {
             var model = new PaymentInfoModel();
 
-          
+
 
             //for (var i = 0; i < 15; i++)
             //{
