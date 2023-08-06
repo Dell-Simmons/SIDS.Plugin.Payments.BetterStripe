@@ -10,6 +10,7 @@ using Nop.Services.Localization;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
+using SIDS.Plugin.Payments.BetterStripe.Components;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
