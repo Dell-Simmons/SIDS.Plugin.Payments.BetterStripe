@@ -8,6 +8,8 @@ using SIDS.Plugin.Payments.BetterStripe.Models;
 using Nop.Services.Messages;
 using Nop.Services.Orders;
 using Nop.Web.Framework.Components;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using System.Collections.Generic;
 
 namespace SIDS.Plugin.Payments.BetterStripe.Components
 {
@@ -64,6 +66,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
             var model = new PaymentInfoModel();
+            model.Warnings = new List<string>();
 
 
 

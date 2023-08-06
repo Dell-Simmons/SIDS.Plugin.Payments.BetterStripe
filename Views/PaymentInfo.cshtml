@@ -3,7 +3,8 @@
 @inject INopHtmlHelper NopHtml
 @{
     Layout = "";
-    NopHtml.AddScriptParts(ResourceLocation.Footer, "https://js.stripe.com/v3/", "", true);
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "https://js.stripe.com/v3/");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Payments.BetterStripe/Views/checkout.js");
 }
 <style>
     #stripe-payment-form {
@@ -89,18 +90,18 @@
 }
 else
 {
-    <div id="stripe-payment-form">
+    <div id="payment-form">
         <input type="hidden" asp-for="StripeErrors">
         <input type="hidden" asp-for="StripePaymentIntentId">
         <a href="https://www.shift4shop.com/credit-card-logos.html"><img alt="Credit Card Logos" title="Credit Card Logos" src="https://www.shift4shop.com/images/credit-card-logos/cc-lg-4.png" width="413" height="59" border="0" /></a>
         <div class="form-sprite-payment">
             <div class="form-sprite-payment-cardholder">
                 <label for="stripe-card-element">
-                    @T("FoxNetSoft.Plugin.Payments.StripeDirect.CardHolder")
+                    Cardholder Name here
                 </label>
                 <input id="stripe-cardholder-name" type="text" value="@Model.CardHolderName">
             </div>
-            <div id="stripe-card-element">
+            <div id="payment-element">
                 <!-- A Stripe Element will be inserted here. -->
             </div>
             <!-- Used to display Element errors. -->
@@ -110,7 +111,4 @@ else
             <div id="stripe-card-errors" role="alert"></div>
         </div>
     </div>
-    <script>
-    </script>
-  
 }
