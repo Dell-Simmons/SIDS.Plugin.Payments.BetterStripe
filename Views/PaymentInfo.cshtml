@@ -1,11 +1,11 @@
 ﻿@model SIDS.Plugin.Payments.BetterStripe.Models.PaymentInfoModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@inject INopHtmlHelper NopHtml
 @{
     Layout = "";
-    NopHtml.AddScriptParts(ResourceLocation.Footer, "https://js.stripe.com/v3/");
-    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Payments.BetterStripe/Views/checkout.js");
 }
+<!script type="text/javascript" src="https://js.stripe.com/v3/"></!script>
+<!script src="~/Plugins/Payments.BetterStripe/Views/checkout.js" defer></!script>
+
 <style>
     #stripe-payment-form {
         width: 100%;
@@ -77,6 +77,7 @@
         text-align: center;
     }
 </style>
+
 @if (Model.Warnings.Any())
 {
     <div class="message-error">
