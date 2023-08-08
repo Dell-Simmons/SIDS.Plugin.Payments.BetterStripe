@@ -1,18 +1,19 @@
 // This is your test publishable API key.
-alert("in checkout.js in scripts subdirectory");
-try {
-  alert("The first attempt to access Stripe: " + Stripe.version);
-} catch (e) {
-  alert("Stripe is not ready.");
-}
 
+//try {
+//  alert("The first attempt to access Stripe: " + Stripe.version);
+//} catch (e) {
+//  alert("Stripe is not ready.");
+//}
+// 
+var pKey;
 stripeScriptElement = document.querySelector("script[src^='https://js.stripe.com/v3']");
 if (stripeScriptElement) {
   stripeScriptElement.addEventListener("load", () => {
     if (Stripe) {
       alert("Stripe v." + Stripe.version + " is ready. ");
       stripe = Stripe('pk_test_TLgMlpwIfZiVQvSi4xPpRmlo');
-      //  alert(stripe.checkStatus);
+      alert("pKey in checkout.js is" + pKey);
     }
     else {
       alert("Failed loading Stripe.js");
