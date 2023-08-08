@@ -4,6 +4,10 @@
     Layout = "";
 }
 <head>
+<script> 
+    var pKey = '@Model.PublishableKey';
+    alert("PKey in PaymentInfo.cshtml is "+ pKey );
+</script>
 <!script type="text/javascript" src="https://js.stripe.com/v3/"></!script>
 <!script type="text/javascript" src="/Plugins/Payments.BetterStripe/Scripts/checkout.js" defer></!script>
 </head>

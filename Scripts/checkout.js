@@ -12,7 +12,7 @@ if (stripeScriptElement) {
   stripeScriptElement.addEventListener("load", () => {
     if (Stripe) {
       alert("Stripe v." + Stripe.version + " is ready. ");
-      stripe = Stripe('pk_test_TLgMlpwIfZiVQvSi4xPpRmlo');
+      stripe = Stripe(pKey);
       alert("pKey in checkout.js is" + pKey);
     }
     else {

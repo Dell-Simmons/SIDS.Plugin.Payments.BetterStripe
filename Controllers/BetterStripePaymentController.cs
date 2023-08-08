@@ -19,6 +19,7 @@ namespace SIDS.Plugin.Payments.BetterStripe.Controllers
             [HttpPost]
             public ActionResult Create(PaymentIntentCreateRequest request)
             {
+            //"sk_test_1vkqbd6XNV4XEIvHfjwA9JNm";
             StripeConfiguration.ApiKey = "sk_test_1vkqbd6XNV4XEIvHfjwA9JNm";
             var paymentIntentService = new PaymentIntentService();
                 var paymentIntent = paymentIntentService.Create(new PaymentIntentCreateOptions

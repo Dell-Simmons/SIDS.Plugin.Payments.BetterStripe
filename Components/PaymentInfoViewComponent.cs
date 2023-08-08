@@ -67,6 +67,8 @@ namespace SIDS.Plugin.Payments.BetterStripe.Components
         {
             var model = new PaymentInfoModel();
             model.Warnings = new List<string>();
+            model.PublishableKey = _betterStripePaymentSettings.PublicKey;
+            
 
 
 
