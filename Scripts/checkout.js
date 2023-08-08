@@ -1,5 +1,25 @@
 // This is your test publishable API key.
-const stripe = Stripe("pk_test_TLgMlpwIfZiVQvSi4xPpRmlo");
+alert("in checkout.js in scripts subdirectory");
+try {
+  alert("The first attempt to access Stripe: " + Stripe.version);
+} catch (e) {
+  alert("Stripe is not ready.");
+}
+
+stripeScriptElement = document.querySelector("script[src^='https://js.stripe.com/v3']");
+if (stripeScriptElement) {
+  stripeScriptElement.addEventListener("load", () => {
+    if (Stripe) {
+      alert("Stripe v." + Stripe.version + " is ready. ");
+      stripe = Stripe('pk_test_TLgMlpwIfZiVQvSi4xPpRmlo');
+      //  alert(stripe.checkStatus);
+    }
+    else {
+      alert("Failed loading Stripe.js");
+    }
+  });
+}
+
 
 // The items the customer wants to buy
 const items = [{ id: "xl-tshirt" }];
@@ -15,7 +35,7 @@ document
 
 let emailAddress = '';
 // top
-//StripeConfiguration.ApiKey = "sk_test_1vkqbd6XNV4XEIvHfjwA9JNm";
+StripeConfiguration.ApiKey = "sk_test_1vkqbd6XNV4XEIvHfjwA9JNm";
 
 //var options = new PaymentIntentCreateOptions
 //{
