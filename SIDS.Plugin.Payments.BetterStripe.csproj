@@ -19,13 +19,10 @@
   <ItemGroup>
     <None Remove="logo.jpg" />
 	<None Remove="plugin.json" />
-	<None Remove="Views\checkout.css" />
-	<None Remove="Views\checkout.html" />
 	<None Remove="Views\checkout.js" />
 	<None Remove="Views\Configure.cshtml" />
 	<None Remove="Views\PaymentInfo.cshtml" />
 	<None Remove="Views\PaymentInfo1.cshtml" />
-	<None Remove="Views\StripeLibrary.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
   </ItemGroup>
 
@@ -34,12 +31,6 @@
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="plugin.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\checkout.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\checkout.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\checkout.js">
@@ -52,9 +43,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\PaymentInfo1.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\StripeLibrary.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\_ViewImports.cshtml" />

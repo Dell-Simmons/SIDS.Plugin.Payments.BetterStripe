@@ -34,8 +34,7 @@ document
   .addEventListener("submit", handleSubmit);
 
 let emailAddress = '';
-// top
-StripeConfiguration.ApiKey = "sk_test_1vkqbd6XNV4XEIvHfjwA9JNm";
+
 
 //var options = new PaymentIntentCreateOptions
 //{
