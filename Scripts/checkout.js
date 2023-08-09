@@ -7,13 +7,14 @@
 //}
 // 
 var pKey;
-stripeScriptElement = document.querySelector("script[src^='https://js.stripe.com/v3']");
+var stripe;
+var stripeScriptElement = document.querySelector("script[src^='https://js.stripe.com/v3']");
 if (stripeScriptElement) {
   stripeScriptElement.addEventListener("load", () => {
     if (Stripe) {
-      alert("Stripe v." + Stripe.version + " is ready. ");
+     // alert("Stripe v." + Stripe.version + " is ready. ");
       stripe = Stripe(pKey);
-      alert("pKey in checkout.js is" + pKey);
+     // alert("pKey in checkout.js is" + pKey);
     }
     else {
       alert("Failed loading Stripe.js");
@@ -64,12 +65,6 @@ async function initialize() {
   };
   elements = stripe.elements({ appearance, clientSecret });
 
-  //const linkAuthenticationElement = elements.create("linkAuthentication");
-  //linkAuthenticationElement.mount("#link-authentication-element");
-
-  //linkAuthenticationElement.on('change', (event) => {
-  //  emailAddress = event.value.email;
-  //});
 
   const paymentElementOptions = {
     layout: "tabs",
