@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Primitives;
 using Nop.Core;
 using Nop.Core.Domain.Orders;
 using Nop.Services.Common;
@@ -121,22 +122,43 @@ namespace SIDS.Plugin.Payments.BetterStripe
         }
 
         public Task PostProcessPaymentAsync(PostProcessPaymentRequest postProcessPaymentRequest)
-        { throw new NotImplementedException(); }
+        { throw new NotImplementedException("PostProcessPaymentAsync"); }
 
         public Task<ProcessPaymentResult> ProcessPaymentAsync(ProcessPaymentRequest processPaymentRequest)
-        { throw new NotImplementedException(); }
+        { throw new NotImplementedException("ProcessPaymentAsync"); }
 
         public Task<ProcessPaymentResult> ProcessRecurringPaymentAsync(ProcessPaymentRequest processPaymentRequest)
-        { throw new NotImplementedException(); }
+        { throw new NotImplementedException("ProcessRecurringPaymentAsync"); }
 
         public Task<RefundPaymentResult> RefundAsync(RefundPaymentRequest refundPaymentRequest)
-        { throw new NotImplementedException(); }
+        { throw new NotImplementedException("RefundASync"); }
 
         public Task<IList<string>> ValidatePaymentFormAsync(IFormCollection form)
-        { throw new NotImplementedException(); }
+        {
+            IList<string> errors = new List<string>();
 
+            if (!(form.TryGetValue("stripeToken", out StringValues stripeToken) || stripeToken.Count != 1 || !IsStripeTokenID(stripeToken[0])))
+            {
+                errors.Add("Token was not supplied or invalid");
+            }
+            return Task.FromResult(errors);
+        }
+        /// <summary>
+        /// Perform a shallow validation of a stripe token
+        /// </summary>
+        /// <param name="stripeTokenObj"></param>
+        /// <returns></returns>
+        private bool IsStripeTokenID(string token)
+        {
+            return token.StartsWith("tok_");
+        }
+
+        private bool IsChargeID(string chargeID)
+        {
+            return chargeID.StartsWith("ch_");
+        }
         public Task<VoidPaymentResult> VoidAsync(VoidPaymentRequest voidPaymentRequest)
-        { throw new NotImplementedException(); }
+        { throw new NotImplementedException("VoidAsync"); }
 
         /// <summary>
         /// Gets a configuration page URL

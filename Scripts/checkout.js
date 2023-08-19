@@ -72,17 +72,52 @@ async function initialize() {
 
   const paymentElement = elements.create("payment", paymentElementOptions);
   paymentElement.mount("#payment-element");
+  //alert("disable the continue button????")
+  //$('.payment-info-next-step-button').attr('onclick', null);
 }
+$('input.payment-info-next-step-button').on('click', function (data) {
+  event.preventDefault();
+/*$('.payment-info-next-step-button').on('click', function (data) {*/
+  alert("button clicked");
+/*  $('#braintree-errors').html('');*/
+  alert("button clicked 3");
+  //if (!submitForm) {
+  //  if (!stepBack) {
+  //    components.hostedFields.tokenize(function (err, payload) {
+  //      if (err) {
+  //        console.log('tokenization error:', err);
+
+  //        var currentErrorvalue = $('#@Html.IdFor(model => model.Errors)').val();
+  //        $('#@Html.IdFor(model => model.Errors)').val(currentErrorvalue + '|' + err.message);
+
+  //        $('#braintree-errors').html(err.message);
+  //        return;
+  //      }
+
+  //      verifyCard(payload);
+  //    });
+  //  }
+  //  return false;
+  //}
+  //else if (onePageCheckout) {
+  //  submitForm = false;
+  alert("Calling handleSubmit");
+  handleSubmit();
+  alert("returned from hanndleSubmit");
+  alert("calling Payment.Save");
+    PaymentInfo.save();
+  //}
+});
 
 async function handleSubmit(e) {
   e.preventDefault();
   setLoading(true);
-
+  alert("in handleSubmit above stripe.confirmPayment");
   const { error } = await stripe.confirmPayment({
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://localhost:4242/checkout.html",
+      return_url: '@(storeLocation)checkout/OpcSavePaymentInfo/',
       receipt_email: emailAddress,
     },
   });
